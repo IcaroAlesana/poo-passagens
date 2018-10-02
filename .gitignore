@@ -1,4 +1,6 @@
 /netbeans/eclipse/nbproject/private/
 /netbeans/eclipse/build/*
 /eclipse/bin/*
-/target/.idea
+/target/.idea/.settings/bin
+/.settings
+/.idea

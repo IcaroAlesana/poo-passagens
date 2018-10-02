@@ -8,8 +8,8 @@ public class RepositorioDeLocais{
     private ArrayList<Local> locais = new ArrayList<Local>();
 
     public RepositorioDeLocais(){
-        LeitorDeArquivo leitor = new LeitorDeArquivo("D:\\Documentos\\Faculdade\\POO\\2018\\gustavokira-poo_passagens" +
-                "\\poo-passagens\\data\\locais.csv");
+        LeitorDeArquivo leitor = new LeitorDeArquivo("D:\\Documentos\\Faculdade\\POO\\2018\\poo-passagens\\passagens" +
+                "\\data\\locais.csv");
         ArrayList<String> linhas= leitor.ler();
 
         for(int i =0;i<linhas.size();i++){
