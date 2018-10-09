@@ -2,10 +2,7 @@ package udesc.cct.poo.passagem.controle;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import udesc.cct.poo.passagem.modelos.Assento;
-import udesc.cct.poo.passagem.modelos.Local;
-import udesc.cct.poo.passagem.modelos.Parada;
-import udesc.cct.poo.passagem.modelos.Viagem;
+import udesc.cct.poo.passagem.modelos.*;
 import udesc.cct.poo.passagem.servicos.ServicoDeLocais;
 import udesc.cct.poo.passagem.servicos.ServicoDePassagens;
 import udesc.cct.poo.passagem.servicos.ServicoDeViagens;
@@ -33,6 +30,7 @@ public class ControleMarcarPassagem {
 
         ArrayList<Assento> assentos = escolhida.getAssentos();
         this.listarAssentos(assentos);
+        marcarPassagem(escolhida, origem, destino);
     }
 
     public Viagem acharUmaViagemPorOrigemDestino(Local origem, Local destino) {
@@ -110,6 +108,12 @@ public class ControleMarcarPassagem {
         Assento assento = assentos.get(assentoIdx - 1);
 
         return assento;
+    }
+
+    public void marcarPassagem (Viagem v, Local origem, Local destino){
+        Passageiro passageiro = new Passageiro(scanner);
+        Passagem p = new Passagem(passageiro, v, origem, destino);
+        servicoDePassagens.addPassagem(p);
     }
 
 }

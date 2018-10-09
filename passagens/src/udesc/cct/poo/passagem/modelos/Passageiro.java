@@ -1,10 +1,25 @@
 package udesc.cct.poo.passagem.modelos;
+
+import java.util.Scanner;
+
 public class Passageiro{
     private String nome;
     private String cpf;
 
-    public Passageiro(){
-        
+    public Passageiro(Scanner scanner){
+        setNome(scanner);
+        scanner.nextLine();
+        setCpf(scanner);
+    }
+
+    public void setNome(Scanner scanner) {
+        System.out.println("Digite seu nome:");
+        this.nome = scanner.nextLine();
+    }
+
+    public void setCpf(Scanner scanner) {
+        System.out.println("Digite seu CPF:");
+        this.cpf = scanner.nextLine();
     }
 
     public String getNome(){
