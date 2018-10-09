@@ -68,7 +68,7 @@ public class ControleMarcarPassagem {
         for (int i = 0; i < assentos.size(); i+=2) {
             Assento a = assentos.get(i);
             Assento b = assentos.get(i+1);
-            System.out.println(a.toString() + " | " + b.toString());
+            System.out.println(a.getInfo() + " | " + b.getInfo());
         }
     }
 

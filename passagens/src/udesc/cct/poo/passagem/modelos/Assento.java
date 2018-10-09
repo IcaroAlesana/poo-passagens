@@ -27,7 +27,7 @@ public class Assento{
         this.reservado = true;
     }
 
-    public String toString(){
+    public String getInfo(){
         String tp, free;
         if (this.getTipo() == 0) tp = "Leito";
         else tp = (getTipo() == 1) ? "Semi-leito" : "Convencional";
