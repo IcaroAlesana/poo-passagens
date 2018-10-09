@@ -7,8 +7,8 @@ public class Passageiro{
     private String cpf;
 
     public Passageiro(Scanner scanner){
-        setNome(scanner);
         scanner.nextLine();
+        setNome(scanner);
         setCpf(scanner);
     }
 

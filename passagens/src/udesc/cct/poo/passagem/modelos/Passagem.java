@@ -12,4 +12,7 @@ public class Passagem{
         this.origem = origem;
         this.destino = destino;
     }
+    public String getInfo(){
+        return ("Passageiro - " + this.passageiro.getNome() + " / " + this.passageiro.getCpf() + "\n\n" + "Origem: " + this.origem.getNome() + "\n" + "Destino: " + this.destino.getNome() + "\n\n" + "Itinerario\n\n" + "Embarque: " + this.viagem.getParadaPorNome(this.origem.getNome()).getInfo() + " / " + "Desembarque: " + this.viagem.getParadaPorNome(this.destino.getNome()).getInfo() + "\n");
+    }
 }

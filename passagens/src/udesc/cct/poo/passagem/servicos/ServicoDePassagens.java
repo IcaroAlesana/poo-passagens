@@ -13,6 +13,7 @@ public class ServicoDePassagens {
 	public void addPassagem(Passagem p) {
 		this.passagens.add(p);
 	}
+
 	public ArrayList<Passagem> getTodasAsPassagens(){
         return this.passagens;
     }
