@@ -13,7 +13,6 @@ public class ControleMarcarPassagem {
     private ServicoDeLocais servicoDeLocais;
     private ServicoDeViagens servicoDeViagens;
     private ServicoDePassagens servicoDePassagens;
-    private boolean existeViagem;
     
     public ControleMarcarPassagem(Scanner scanner, ServicoDeLocais servicoDeLocais, ServicoDeViagens servicoDeViagens, ServicoDePassagens servicoDePassagens) {
         this.scanner = scanner;
@@ -36,8 +35,8 @@ public class ControleMarcarPassagem {
 
     public Viagem acharUmaViagemPorOrigemDestino(Local origem, Local destino){
         ArrayList<Viagem> viagens = servicoDeViagens.getTodasAsViagensPorOrigemDestino(origem, destino);
-        listarViagens(viagens, origem, destino);
-        if( this.existeViagem == false){
+        boolean existeViagem = listarViagens(viagens, origem, destino);
+        if( existeViagem == false){
            this.iniciar();
         }
         System.out.println("escolha um Onibus:");
@@ -56,10 +55,10 @@ public class ControleMarcarPassagem {
         }
     }
 
-    public void listarViagens(ArrayList<Viagem> viagens, Local origem, Local destino){
+    public boolean listarViagens(ArrayList<Viagem> viagens, Local origem, Local destino){
     if(viagens.size()== 0 ){
-        System.out.println("Viagem não encontrada");    
-        this.existeViagem = false;
+        System.out.println("Viagem não encontrada\n");
+        return false;
     }else{
         for(int i =0;i<viagens.size();i++){
             int idx = i+1;
@@ -69,16 +68,20 @@ public class ControleMarcarPassagem {
             System.out.println(idx+") "+embarque.getInfo()+" "+desembarque.getInfo());
             
      }
-         this.existeViagem = true;
+         return true;
          }
     }
    
     public void listarAssentos(ArrayList<Assento> assentos) {
+        int totalAssentos = 0;
         for (int i = 0; i < assentos.size(); i+=2) {
             Assento a = assentos.get(i);
+            if (a.estaDesocupado() == true) totalAssentos++;
             Assento b = assentos.get(i+1);
+            if (b.estaDesocupado() == true) totalAssentos++;
             System.out.println(a.getInfo() + " | " + b.getInfo());
         }
+        System.out.println("Total de assentos livres: " + totalAssentos + "\n");
     }
 
     public Local escolherOrigem() {
