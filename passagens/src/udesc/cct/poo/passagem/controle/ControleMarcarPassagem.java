@@ -72,17 +72,32 @@ public class ControleMarcarPassagem {
          }
     }
    
-    public void listarAssentos(ArrayList<Assento> assentos) {
+     public void listarAssentos(ArrayList<Assento> assentos) {
         int totalAssentos = 0;
         for (int i = 0; i < assentos.size(); i+=2) {
             Assento a = assentos.get(i);
             if (a.estaDesocupado() == true) totalAssentos++;
             Assento b = assentos.get(i+1);
             if (b.estaDesocupado() == true) totalAssentos++;
-            System.out.println(a.getInfo() + " | " + b.getInfo());
+           
+            boolean desocupadoA = a.estaDesocupado();
+            boolean desocupadoB = b.estaDesocupado();
+            if(desocupadoA == false && desocupadoB == false){
+            	System.out.println("");
+            }else {
+            	 if(desocupadoA == false && desocupadoB == true){
+   	             System.out.println( b.getInfo());
+            	 }else{
+            		 if(desocupadoA == true && desocupadoB == false){
+            			 System.out.println( a.getInfo()); 
+            		 }else{
+            			 System.out.println( a.getInfo() + " | " + b.getInfo()); 
+            		 }
+            	 }          
+            }
         }
         System.out.println("Total de assentos livres: " + totalAssentos + "\n");
-    }
+     }
 
     public Local escolherOrigem() {
         ArrayList<Local> locais = servicoDeLocais.getTodosOsLocais();
