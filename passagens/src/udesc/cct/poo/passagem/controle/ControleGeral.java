@@ -38,7 +38,7 @@ public class ControleGeral{
         );
     }
     
-    Public void encerrar(){
+    public void encerrar(){
         System.out.println("programa finalizado");
     }
     

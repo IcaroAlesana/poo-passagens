@@ -13,7 +13,7 @@ public class ControleMarcarPassagem {
     private ServicoDeLocais servicoDeLocais;
     private ServicoDeViagens servicoDeViagens;
     private ServicoDePassagens servicoDePassagens;
-    int existeOuNaoViagem;
+    private boolean existeViagem;
     
     public ControleMarcarPassagem(Scanner scanner, ServicoDeLocais servicoDeLocais, ServicoDeViagens servicoDeViagens, ServicoDePassagens servicoDePassagens) {
         this.scanner = scanner;
@@ -37,7 +37,7 @@ public class ControleMarcarPassagem {
     public Viagem acharUmaViagemPorOrigemDestino(Local origem, Local destino){
         ArrayList<Viagem> viagens = servicoDeViagens.getTodasAsViagensPorOrigemDestino(origem, destino);
         listarViagens(viagens, origem, destino);
-        if( this.existeOuNaoViagem == 1){
+        if( this.existeViagem == false){
            this.iniciar();
         }
         System.out.println("escolha um Onibus:");
@@ -56,21 +56,10 @@ public class ControleMarcarPassagem {
         }
     }
 
-    public void listarViagens(ArrayList<Viagem> viagens, Local origem, Local destino) {
-
-        for (int i = 0; i < viagens.size(); i++) {
-            int idx = i + 1;
-            Viagem v = viagens.get(i);
-            Parada embarque = v.getParadaPorNome(origem.getNome());
-            Parada desembarque = v.getParadaPorNome(destino.getNome());
-            System.out.println(idx + ") " + embarque.getInfo() + " " + desembarque.getInfo());
-        }
-    }
-
     public void listarViagens(ArrayList<Viagem> viagens, Local origem, Local destino){
     if(viagens.size()== 0 ){
         System.out.println("Viagem não encontrada");    
-        this.existeOuNaoViagem= 1;
+        this.existeViagem = false;
     }else{
         for(int i =0;i<viagens.size();i++){
             int idx = i+1;
@@ -80,7 +69,7 @@ public class ControleMarcarPassagem {
             System.out.println(idx+") "+embarque.getInfo()+" "+desembarque.getInfo());
             
      }
-         this.existeOuNaoViagem = 0;
+         this.existeViagem = true;
          }
     }
    
