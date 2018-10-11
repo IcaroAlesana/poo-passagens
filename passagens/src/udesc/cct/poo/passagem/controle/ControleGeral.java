@@ -37,7 +37,11 @@ public class ControleGeral{
                 this.servicoDePassagens
         );
     }
-
+    
+    Public void encerrar(){
+        System.out.println("programa finalizado");
+    }
+    
     public void iniciar(){
         int escolha = -1;
         while(escolha != ControleGeral.SAIR){
@@ -53,6 +57,9 @@ public class ControleGeral{
                 break;
                 case ControleGeral.VER_PASSAGENS:
                     this.listarPassagens.iniciar();
+                break;
+                case ControleGeral.SAIR:
+                    this.encerrar();
                 break;
             }
         }
