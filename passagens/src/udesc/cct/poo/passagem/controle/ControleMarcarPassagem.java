@@ -13,7 +13,8 @@ public class ControleMarcarPassagem {
     private ServicoDeLocais servicoDeLocais;
     private ServicoDeViagens servicoDeViagens;
     private ServicoDePassagens servicoDePassagens;
-
+    int existeOuNaoViagem;
+    
     public ControleMarcarPassagem(Scanner scanner, ServicoDeLocais servicoDeLocais, ServicoDeViagens servicoDeViagens, ServicoDePassagens servicoDePassagens) {
         this.scanner = scanner;
         this.servicoDeLocais = servicoDeLocais;
@@ -33,16 +34,18 @@ public class ControleMarcarPassagem {
         marcarPassagem(escolhida, origem, destino);
     }
 
-    public Viagem acharUmaViagemPorOrigemDestino(Local origem, Local destino) {
+    public Viagem acharUmaViagemPorOrigemDestino(Local origem, Local destino){
         ArrayList<Viagem> viagens = servicoDeViagens.getTodasAsViagensPorOrigemDestino(origem, destino);
         listarViagens(viagens, origem, destino);
+        if( this.existeOuNaoViagem == 1){
+           this.iniciar();
+        }
         System.out.println("escolha um Onibus:");
         int viagensIdx = this.scanner.nextInt();
-        Viagem escolhida = viagens.get(viagensIdx - 1);
-
+        Viagem escolhida = viagens.get(viagensIdx-1);
         return escolhida;
     }
-
+    
     public void listarLocais(ArrayList<Local> locais) {
 
         for (int i = 0; i < locais.size(); i++) {
@@ -64,6 +67,23 @@ public class ControleMarcarPassagem {
         }
     }
 
+    public void listarViagens(ArrayList<Viagem> viagens, Local origem, Local destino){
+    if(viagens.size()== 0 ){
+        System.out.println("Viagem não encontrada");    
+        this.existeOuNaoViagem= 1;
+    }else{
+        for(int i =0;i<viagens.size();i++){
+            int idx = i+1;
+            Viagem v = viagens.get(i);
+            Parada embarque = v.getParadaPorNome(origem.getNome());
+            Parada desembarque = v.getParadaPorNome(destino.getNome());
+            System.out.println(idx+") "+embarque.getInfo()+" "+desembarque.getInfo());
+            
+     }
+         this.existeOuNaoViagem = 0;
+         }
+    }
+   
     public void listarAssentos(ArrayList<Assento> assentos) {
         for (int i = 0; i < assentos.size(); i+=2) {
             Assento a = assentos.get(i);
